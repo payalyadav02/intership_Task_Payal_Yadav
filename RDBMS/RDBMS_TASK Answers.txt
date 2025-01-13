@@ -1,0 +1,165 @@
+RDBMS_TASK------>
+------------
+1. TASK_UNIVERSITY_MANAGEMENT:-
+
+    1. select d.dept_name as departments,count(s.student_id)as total_students from students s join departments d on s.dept_id=d.dept_id group by d.dept_name;
+    2. select c.course_id,c.course_name,p.prof_id from courses c join professors p on c.prof_id=p.prof_id where p.prof_id=105;
+    3. by teacher
+    4. select s.student_id,s.first_name,s.last_name from students s left join enrollments e on s.student_id =e.student_id where e.course_id is NULL;
+    5. select d.dept_name as department_name,count(c.course_id) as total_courses from departments d left join courses c on d.dept_id=c.dept_id group by d.dept_name;
+    6. select s.student_id,s.first_name,s.last_name,c.course_name from students s join enrollments e on s.student_id=e.student_id join courses c on e.course_id=c.course_id where c.course_name='BCA';
+    7. select c.course_id,c.course_name,count(e.student_id) as enrollment_count from courses c join enrollments e on c.course_id=e.course_id  group by c.course_id,c.course_name order by enrollment_count desc limit 1;
+    8. select d.dept_name,AVG(c.credits) as avg_credits_per_student from departments d join students s on d.dept_id =s.dept_id join enrollments e on s.student_id = e.student_id join courses c on e.course_id = c.course_id group by d.dept_name;
+    9. select p.prof_id,p.first_name,p.last_name, count(DISTINCT c.dept_id) as dept_count from professors p join courses c on p.prof_id=c.prof_id group by p.prof_id,p.first_name,p.last_name having dept_count>1;
+    10.SELECT course_name,MAX(grade) AS highest_grade,MIN(grade) AS lowest_grade FROM courses c JOIN enrollments e ON c.course_id = e.course_id WHERE c.course_name IN ('BBA', 'BCA', 'BSC') GROUP BY c.course_name;
+
+2.TASK_OLA:-
+
+    1. select first_name,last_name,phone_no,city from drivers where rating>=4.5;
+    2. select driver_id,count(ride_id)as total_rides_completed from rides where ridestatus='Completed' group by driver_id;
+    3. select r.rider_id,r.first_name,r.last_name,r.phone_no,r.city from riders r left join rides ri on r.rider_id= ri.rider_id where ri.rider_id is null;
+    4. select d.driver_id,d.first_name,d.last_name,sum(r.fare)as total_earnings from drivers d join rides r on d.driver_id=r.driver_id where r.ridestatus = 'Completed' group by d.driver_id,d.first_name, d.last_name;
+    5. select r.rider_id,r.first_name,r.last_name,ri.ride_id,ri.ride_date,ri.pickup_loc,ri.drop_loc,ri.fare from riders r join rides ri on r.rider_id=ri.rider_id where ri.ride_date=(select MAX(ride_date) from rides where rider_id=r.rider_id);
+    6. select pickup_loc as city, count(*)as total_rides from rides group by pickup_loc;
+    7. select ride_id,rider_id,driver_id,ride_date,pickup_loc,drop_loc,distance,fare,ridestatus from rides where distance>20;
+    8. select pay_method,count(pay_method)as method_count from payments group by pay_method order by method_count desc limit 1;
+    9. select r.rider_id,r.first_name,r.last_name,ri.ride_id,ri.ride_date,ri.pickup_loc,ri.drop_loc,ri.fare from riders r join rides ri on r.rider_id = ri.rider_id where ri.ride_date=(select MAX(ride_date) from rides where rider_id=r.rider_id);
+    10.select r.ride_id,r.ridedate,r.pickuplocation,r.droplocation,r.distance,r.fare,r.ridestatus,rd.first_name AS rider_first_name,rd.last_name AS rider_last_name, d.first_name AS driver_first_name, d.last_name AS driver_last_name FROM rides JOIN riders rd ON r.rider_id = rd.rider_id JOIN drivers d ON        r.driver_id = d.driver_id WHERE r.ridestatus = 'Cancelled'; 
+   
+
+
+3.TASK_RETAIL_STORE:-
+
+     
+    1. select c.customer_id,c.first_name,c.last_name,count(o.order_id)as total_orders from customers c left join orders o on c.customer_id = o .customer_id group by c.customer_id,c.first_name,c.last_name;
+    2. select p.pro_id,p.pro_name,sum(od.quantity * od.unit_price)as total_revenue from products p join order_details od on p.pro_id= od.pro_id group by p.pro_id,p.pro_name order by total_revenue desc;
+    3. select p.pro_id,p.pro_name,MAX(od.unit_price)as highest_price from products p join order_details od on p.pro_id = od.pro_id group by p.pro_id,p.pro_name order by highest_price desc limit 1;
+    4. select c.customer_id,c.first_name,c.last_name,c.email,c.mobile_no,c.address from customers c join orders o on c.customer_id= o.customer_id where o.order_date>=CURDATE()- INTERVAL 30 DAY;
+    5. select c.customer_id,c.first_name,c.last_name,sum(p.pay_amount)as total_amount_paid from customers c join orders o on c.customer_id = o.customer_id join payments p on o.order_id=p.order_id group by c.customer_id,c.first_name,c.last_name;
+    6. select p.category,sum(od.quantity)as total_products_sold from products p join order_details od on p.pro_id = od.pro_id group by p.category;  
+    7. select o.order_id,o.customer_id,o.order_date,o.order_status from orders o where order_status='Pending';
+    8. select sum(o.total_amount)/count(o.order_id)as average_order_value from orders o;
+    9. select c.customer_id,c.first_name,c.last_name,sum(o.total_amount)as total_spent from customers c join orders o on c.customer_id=o.customer_id group by c.customer_id,c.first_name,c.last_name order by total_spent desc limit 5;
+    10.select p.pro_id,p.pro_name,p.category,p.price from products p left join order_details od on p.pro_id=od.pro_id where od.pro_id is NULL;
+
+
+
+4.TASK_HR_MANAGEMENT_SYSTEM:-
+
+
+    1. select first_name,last_name,mobile_no from employees where hire_date>'2023-01-01';
+    2. select dept_id, SUM(salary) AS total_payrollayroll from employees group by dept_id;
+    3. select emp_id,first_name,last_name,dept_id from employees where manager_id is NULL;
+    4. select e.dept_id,e.first_name,e.last_name,e.salary from employees e where e.salary=(select MAX(salary) where dept_id=e.dept_id);
+    5. select emp_id,MAX(review_date)as most_recent_review_date,comments from performance_reviews group by emp_id,comments;
+    6. select dept_id,count(*)as employee_count from employees group by dept_id;
+    7. select e.emp_id,e.first_name,e.last_name,e.dept_id,p.performance_score from performance_reviews p join employees e on p.emp_id=e.emp_id where p.performance_score='Excellent';
+    8. select e.emp_id,e.first_name,e.last_name,e.salary,d.dept_name from employees e join departments d on e.dept_id=d.dept_id order by e.salary desc limit 5;
+    9. select emp_id,first_name,last_name, dept_id, salary from employees where manager_id=1101;
+   
+
+
+5.TASK_ZOMATO:-
+
+     1. select restaurant_name,city,rating from restaurants where rating>=4.5;
+     2. select customer_id,count(*)as total_orders from orders group by customer_id;
+     3. select restaurant_name,city,cuisine_type from restaurants where cuisine_type='Italian' AND city='Mumbai';
+     4. select r.restaurant_name,sum(o.order_amount)as total_revenue from restaurants r join orders o on r.restaurant_id=o.restaurant_id group by r.restaurant_name;
+     5. select o.customer_id, o.order_id, o.order_date, o.order_amount from orders o join (select customer_id, MAX(order_date) as recent_order_date from order group by customer_id) recent_orders ON o.customer_id = recent_orders.customer_id AND o.order_date = recent_orders.recent_order_date;
+     6. select c.customer_id, c.first_name,c.last_name from customers c left join orders o on c.customer_id = o.customer_id where o.order_id is NULL;
+     7. select r.restaurant_name, count(rv.review_id) as total_reviews from restaurants r join reviews rv ON r.restaurant_id = rv.restaurant_id group by r.restaurant_name order by total_reviews DESC;
+     8. select payment_method, count(*) as usage_count from payments group by payment_method order by usage_count DESC limit 1;
+     9. select r.restaurant_name, sum(o.order_amount)as total_revenue from restaurants r join orders o ON r.restaurant_id = o.restaurant_id where o.order_stauts = 'Completed' group by r.restaurant_name order by total_revenue DESC limit 5;
+    10. select o.order_id, o.order_date, o.order_amount, c.first_name,c.last_name, r.restaurant_name from orders o join customers c on o.customer_id = c.customer_id join restaurants r on o.customer_id = r.restaurant_id where o.order_stauts='Cancelled';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     1. 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
