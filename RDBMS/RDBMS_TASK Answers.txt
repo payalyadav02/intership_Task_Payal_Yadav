@@ -74,10 +74,18 @@ RDBMS_TASK------>
 
 
 
+6.TASK_DOCTOR_CLINIC:-
 
-
-
-
+     1. select doc_id, count(*)as total_appointments from appointments group by doc_id order by total_appointments DESC;
+     2. select p.patient_id, p.patient_name,a.appoint_date,a.reason from appointments a join patients p on a.patient_id=p.patient_id join doctors d on a.doc_id=d.doc_id where d.doc_name='Amit Sharma' order by a.appoint_date;
+     3. select d.dept_name,count(a.appoint_id)as total_appointments from appointments a join doctors doc on a.doc_id=doc.doc_id join departmentsd on doc.dept_id=d.dept_id where d.dept_name='Cardiology' group by d.dept_name;
+     4. select s.specialty_name, count(a.appoint_id)as total_appointments from appointments a join doctors doc on a.doc_id=doc.doc_id join specialties s on doc.speciality_id=s.specialty_id group by s.specialty_name order by total_appointments DESC LIMIT 1;
+     5. select sum(p.pay_amount)as total_payment_amount from payments p join appointments a on p.appoint_id=a.appoint_id where a.status='Completed';
+     6. select d.doc_name,count(DISTINCT a.patient_id)as total_patients from appointments a join doctors d on a.doc_id=d.doc_id join patients p on a.patient_id=p.patient_id group by d.doc_id order by total_patients DESC;
+     7. select p.patient_name,p.email,p.mobile_no,a.appoint_date,a.status as appointment_status from appointments a join patients p on a.patient_id = p.patient_id where a.status ='Cancelled';
+     8. select a.status,count(a.appoint_id) as total_appointments from appointments a group by a.status order by total_appointments DESC;
+     9. select AVG(p.pay_amount)as average_payment_amount from payments p join appointments a on p.appoint_id = a.appoint_id where a.status = 'Completed';
+    10. select d.doc_name,count(a.appoint_id)as total_appointments from appointments a join doctors d on a.doc_id = d.doc_id group by d.doc_id order by total_appointments DESC LIMIT 1;
 
 
 
