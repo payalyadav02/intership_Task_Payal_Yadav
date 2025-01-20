@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rules and Regulations</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #444;
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 18px;
+      text-align: left;
+    }
+
+    ul {
+      margin: 20px 0;
+      padding-left: 40px;
+    }
+
+    ul li {
+      margin: 10px 0;
+      line-height: 1.6;
+      text-align: left;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .button-group button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .exit-btn {
+      background-color: #d9534f;
+      color: #fff;
+    }
+
+    .exit-btn:hover {
+      background-color: #c9302c;
+    }
+
+    .continue-btn {
+      background-color: #5cb85c;
+      color: #fff;
+    }
+
+    .continue-btn:hover {
+      background-color: #4cae4c;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Quiz Rules and Regulations</h1>
+    <ul>
+      <li>There are a total of 5 questions in the quiz.</li>
+      <li>You will have a maximum of 15 seconds to answer each question.</li>
+      <li>Once you move to the next question, you cannot go back.</li>
+      <li>Each correct answer will give you 1 point. There is no negative marking.</li>
+      <li>At the end of the quiz, you will see your total score and performance feedback.</li>
+    </ul>
+    <div class="button-group">
+      <button class="exit-btn" onclick="exitQuiz()">Exit Quiz</button>
+      <button class="continue-btn" onclick="continueToQuiz()">Continue to Quiz</button>
+    </div>
+  </div>
+
+  <script>
+    function exitQuiz() {
+     window.location.href = "quit.html"; 
+    }
+
+    function continueToQuiz() {
+      window.location.href = "ques1.html"; 
+    }
+  </script>
+</body>
+</html>

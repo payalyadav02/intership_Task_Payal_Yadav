@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Question 3</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="timer.js"></script>
+  <script>
+    function nextQuestion() {
+      const selectedOption = document.querySelector('input[name="q3"]:checked');
+      if (selectedOption) {
+        const answer = selectedOption.value;
+        sessionStorage.setItem("q3", answer); 
+      }
+      window.location.href = "ques4.html";
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div id="timer">Time Left: <span id="time">15</span> seconds</div>
+    <h1>Question 3</h1>
+    <p>What is the largest planet in our solar system?</p>
+    <form>
+      <label><input type="radio" name="q3" value="A"> A. Earth</label><br>
+      <label><input type="radio" name="q3" value="B"> B. Jupiter</label><br>
+      <label><input type="radio" name="q3" value="C"> C. Saturn</label><br>
+      <label><input type="radio" name="q3" value="D"> D. Mars</label><br>
+    </form>
+    <button onclick="nextQuestion()">Next Question</button>
+  </div>
+</body>
+</html>

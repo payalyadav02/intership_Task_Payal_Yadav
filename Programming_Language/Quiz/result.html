@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Result</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const correctAnswers = {
+        q1: "C", // Ques 1: 8 legs for a spider
+        q2: "B", // Ques 2: 206 bones in the human body
+        q3: "B", // Ques 3: Jupiter is the largest planet
+        q4: "C", // Ques 4: Canberra is the capital of Australia
+        q5: "A", // Ques 5: Oxygen has the symbol 'O'
+      };
+
+      let score = 0; 
+      let totalQuestions = 5; 
+
+      
+      for (let question in correctAnswers) {
+        const userAnswer = sessionStorage.getItem(question); 
+        if (userAnswer === correctAnswers[question]) {
+          score++; 
+        }
+      }
+
+      
+      document.getElementById("score").innerText = `Your Score: ${score}/${totalQuestions}`;
+
+      const feedback = document.getElementById("feedback");
+      if (score === totalQuestions) {
+        feedback.innerText = "Excellent! You aced the quiz! 🎉";
+      } else if (score >= totalQuestions / 2) {
+        feedback.innerText = "Good job! Keep practicing. 😊";
+      } else {
+        feedback.innerText = "Don't worry! Try again to improve. 💪";
+      }
+
+      
+      sessionStorage.clear();
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Quiz Completed!</h1>
+    <p id="score"></p>
+    <p id="feedback"></p>
+    <!-- Retake and Quit Buttons -->
+    <div class="button-group">
+      <button onclick="restartQuiz()">Retake Quiz</button>
+      <button onclick="quitQuiz()">Quit Quiz</button>
+    </div>
+  </div>
+
+  <script>
+    function restartQuiz() {
+      window.location.href = "home.html"; 
+    }
+
+   function quitQuiz() {
+      window.location.href = "quit.html"; 
+    }
+  </script>
+</body>
+</html>

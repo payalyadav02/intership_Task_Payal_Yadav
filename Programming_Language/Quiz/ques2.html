@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Question 2</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="timer.js"></script>
+  <script>
+    function nextQuestion() {
+      const selectedOption = document.querySelector('input[name="q2"]:checked');
+      if (selectedOption) {
+        const answer = selectedOption.value;
+        sessionStorage.setItem("q2", answer); 
+      }
+      window.location.href = "ques3.html"; 
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div id="timer">Time Left: <span id="time">15</span> seconds</div>
+    <h1>Question 2</h1>
+    <p>How many bones are there in the human body?</p>
+    <form>
+      <label><input type="radio" name="q2" value="A"> A. 208</label><br>
+      <label><input type="radio" name="q2" value="B"> B. 206</label><br>
+      <label><input type="radio" name="q2" value="C"> C. 204</label><br>
+      <label><input type="radio" name="q2" value="D"> D. 202</label><br>
+    </form>
+    <button onclick="nextQuestion()">Next Question</button>
+  </div>
+</body>
+</html>
